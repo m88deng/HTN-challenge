@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import {Events, Login} from './pages';
 import Events from './pages/Events';
 import Login from './pages/Login';
-// import Login from './pages/Login';
+import Logged from './pages/Logged';
 
 export default function App() {
   return (
@@ -12,6 +12,7 @@ export default function App() {
           <Route index element={<Events />} />
           <Route path="/home" element={<Events />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logged" element={<Logged />} />
         </Routes>
       </BrowserRouter>
     </div>
