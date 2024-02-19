@@ -1,19 +1,19 @@
-import logo from './../img/logo.svg';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router';
 import './../style/login.css';
 
-export default function Login() {
+export default function Login({ onLogin }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoggedIn, setIsLoggedIn] = useState('false');
+    const formRef = useRef(null);
     const navigate = useNavigate();
+
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        //validation and authentication
         if (email === 'mdeng@uwaterloo.ca' && password === 'htn2024') {
-            setIsLoggedIn(true);
+            onLogin(true);
+            formRef.current.reset();
             navigate("/logged");
         } else {
             alert("failed login");
@@ -22,19 +22,12 @@ export default function Login() {
 
     return (
         <div className='Login'>
-            <header className='Login__header'>
-                <Link to='/'>
-                    <img src={logo} className='Login__header-logo' alt='logo' />
-                </Link>
-            </header>
             <section className='Login__section'>
                 <h1>LOGIN</h1>
-                <form>
-                    <label>Email</label>
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-                    <label>Password</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                    <button type="submit" onClick={handleLogin}>LOGIN</button>
+                <form ref={formRef}>
+                    <div><input className="Login__section-input" type="text" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} /></div>
+                    <div><input className="Login__section-input" type="password" value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} /></div>
+                    <div><button className="Login__section-submit" type="submit" onClick={handleLogin}>LOGIN</button></div>
                 </form>
             </section>
         </div>

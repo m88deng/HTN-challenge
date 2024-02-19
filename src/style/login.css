@@ -5,23 +5,40 @@
   min-height: 100vh;
 }
 
-.Login__header {
-  height: 70px;
-  padding-top: 15px;
-  /* background-color: red; */
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: center;
-}
-
-.Login__header-logo {
-  height: 25px;
-  pointer-events: none;
-  /* background-color: cyan; */
-  padding-left: 40px;
-  cursor: pointer;
-}
-
 .Login__section {
-  background-color: goldenrod;
+  padding: 150px 10%;
+  /* background-color: goldenrod; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.Login__section-input {
+  color: white;
+  padding: 15px 0 15px 40px;
+  font-family: Montserrat;
+  font-size: 20px;
+  width: 480px;
+  border-radius: 40px;
+  background-color: rgba(14, 7, 7, 0.6);
+  border: 2px solid white;
+  margin-bottom: 15px;
+}
+
+::placeholder {
+  color: var(--white);
+}
+
+.Login__section-submit {
+  font-family: Montserrat;
+  font-size: 20px;
+  padding: 15px 0;
+  width: 523px;
+  background-color: white;
+  border-radius: 40px;
+  border: none;
+  margin-top: 60px;
+  cursor: pointer;
 }

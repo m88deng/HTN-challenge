@@ -5,9 +5,12 @@
 }
 
 .App__header {
+  background: linear-gradient(rgba(14, 7, 7, 1) 0%, rgba(14, 7, 7, 1) 70%, rgba(14, 7, 7, 0) );
+  position: absolute;
+  top: 0;
+  width: 100vw;
   height: 70px;
   padding-top: 15px;
-  /* background-color: red; */
   display: grid;
   grid-template-columns: 1.5fr 4fr 0.8fr;
   align-items: center;
@@ -64,11 +67,12 @@
   border-radius: 100%;
   text-align: center;
   background-color: var(--blue);
+  cursor: pointer;
 }
 
 .App__section {
   height: 100vh;
-  padding: 70px 10%;
+  padding: 150px 10%;
 }
 
 .App__section-top {
