@@ -37,11 +37,11 @@ export default function App() {
         <Route index element={<Events isLoggedIn={isLoggedIn} />} />
         <Route path="/home" element={<Events isLoggedIn={isLoggedIn} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
-        {/* {data.sampleEvents.map((event) => (
+        {data.sampleEvents.map((event) => (
           <Route key={event.id}
             path={`/event${Number(event.id)}`} element={<EventDetails eventId={Number(event.id)} />} />
-        ))} */}
-        <Route path={`/event${Number(1)}`} element={<EventDetails eventId={Number(1)} />} />
+        ))}
+        {/* <Route path={`/event${Number(1)}`} element={<EventDetails eventId={Number(1)} />} /> */}
       </Routes>
     </BrowserRouter>
   );

@@ -1,3 +1,8 @@
+p {
+  font-size: 12x;
+  color: var(--white);
+}
+
 .eventDetails {
   min-height: 100vh;
   background-image: url(../img/space-bg.png);
@@ -18,5 +23,40 @@
   text-align: left;
 }
 
+.eventDetails__section-time {
+  display: grid;
+  grid-template-rows: 2fr 0.5fr;
+  align-items: center;
+  padding-left: 20px;
+}
 
+.eventDetails__section-time-day {
+  font-size: 64px;
+  padding-top: 15px;
+}
 
+.eventDetails__section-time-hour {
+  margin-top: 5px;
+}
+
+.eventDetails__section-middle {
+  display: grid;
+  grid-template-columns: 2.3fr 1fr;
+}
+
+.eventDetails__section-event-related {
+  padding: 40px 10px;
+}
+.eventDetails__section-event-related-title {
+  font-size: 24px;
+  color: var(--white);
+  font-weight: 600;
+}
+
+.eventDetails__section-event-related-link {
+  color: #eeeeee;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 10px 0 5px;
+  line-height: 25px;
+}

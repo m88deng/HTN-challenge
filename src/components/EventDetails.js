@@ -78,31 +78,49 @@ function EventDetails({ eventId }) {
             return <img src={tech_talk} className='App__section-event-image' alt='logo' />;
     };
 
+    const formatURL = (generalURL) => {
+        if (generalURL) {
+            return <h5>Public: {generalURL}</h5>
+        }
+        return null;
+    };
+    const formatPrivateURL = (permission, privateURL) => {
+        if (permission === 'private') {
+            return <p>{privateURL}</p>
+        }
+        return null;
+    };
+
     return (
         <div className='eventDetails' >
             {eventData ? (
                 <section className='eventDetails__section'>
                     <div className='eventDetails__section-top'>
                         <div>
-                            <div className='eventDetails__section-event-image'>{formatImage(eventData.event_type)}</div>
+                            <div>{formatImage(eventData.event_type)}</div>
                         </div>
+                        <div className='eventDetails__section-time'>
+                            <h2 className='eventDetails__section-time-day'>{formatDate(eventData.start_time)}</h2>
+                            <h3 className='eventDetails__section-time-hour'>{formatTime(eventData.start_time)} - {formatTime(eventData.end_time)}</h3>
+                            <h5>{formatURL(eventData.general_url)}</h5>
+                        </div>
+                    </div>
+                    <div className='eventDetails__section-middle'>
                         <div>
-                            <h3>Related Events</h3>
+                            <p>{formatPrivateURL(eventData.permission, eventData.private_url)}</p>
+                            <h2>{eventData.name}</h2>
+                            <p>{eventData.description}</p>
+                            <h5>  Speakers: {eventData.speakers.map(speaker => speaker.name).join(', ')}</h5>
+                        </div>
+                        <div className='eventDetails__section-event-related'>
+                            <div className='eventDetails__section-event-related-title'>Related Events</div>
                             {relatedEventData.map((relatedEvent) => (
                                 <Link to={`/event${relatedEvent.id}`}>
                                     <div key={relatedEvent.id}>
-                                        <h4>{relatedEvent.name}</h4>
+                                        <li className='eventDetails__section-event-related-link'>{relatedEvent.name}</li>
                                     </div>
                                 </Link>
                             ))}
-
-                        </div>
-                        <div>
-                            <h5>{formatDate(eventData.start_time)} {formatTime(eventData.start_time)} - {formatTime(eventData.end_time)}| {eventData.permission} Speakers: {eventData.speakers.map(speaker => speaker.name).join(', ')}</h5>
-                            <h2 className='eventDetails__section-event-name'>{eventData.name}</h2>
-                            <h5>{eventData.description}</h5>
-                            <div><h5>Public: {eventData.public_url}</h5></div>
-                            <div><h5>Private: {eventData.private_url}</h5></div>
                         </div>
                     </div>
                 </section>
