@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { useApolloClient } from '@apollo/client';
 
-function EventDetails({ eventId }) {
+function EventDetails({ eventId, isLoggedIn }) {
     const client = useApolloClient();
     const [eventData, setEventData] = useState(null);
     const [relatedEventData, setRelatedEventData] = useState([]);
@@ -51,6 +51,12 @@ function EventDetails({ eventId }) {
 
         fetchNames();
     }, [relatedEventIds]);
+
+    if(eventData){
+        if(permission === 'private' && !isLoggedIn){
+            navigate("/access-denied");
+        }
+    }
 
     const formatDate = (timestamp) => {
         const date = new Date(timestamp);

@@ -103,6 +103,10 @@
   margin-top: -20px;
 }
 
+.App__section-filter-visibility{
+  display: none;
+}
+
 .App__section-filter img {
   height: 12px;
   width: auto;

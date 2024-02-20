@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from './components/Header.js';
 import Events from './pages/Events.js';
 import Login from './pages/Login.js';
+import AccessDenied from './pages/AccessDenied.js';
 import EventDetails from './components/EventDetails.js';
 import { useQuery, gql } from '@apollo/client';
 
@@ -37,9 +38,10 @@ export default function App() {
         <Route index element={<Events isLoggedIn={isLoggedIn} />} />
         <Route path="/home" element={<Events isLoggedIn={isLoggedIn} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/access-denied" element={<AccessDenied/>}/>
         {data.sampleEvents.map((event) => (
           <Route key={event.id}
-            path={`/event${Number(event.id)}`} element={<EventDetails eventId={Number(event.id)} />} />
+            path={`/event${Number(event.id)}`} element={<EventDetails eventId={Number(event.id)} isLoggedIn={isLoggedIn}/>} />
         ))}
         {/* <Route path={`/event${Number(1)}`} element={<EventDetails eventId={Number(1)} />} /> */}
       </Routes>

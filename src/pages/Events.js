@@ -1,5 +1,3 @@
-import filter from './../img/icon/filter.svg';
-
 import workshop from './../img/workshop.png';
 import activity from './../img/activity.png';
 import tech_talk from './../img/tech_talk.png';
@@ -29,7 +27,7 @@ const GET_EVENTS_QUERY = gql`
   }
 `
 
-export default function Events({ isLoggedIn }) {
+export default function Events({ isLoggedIn, filterEvent }) {
 
     const { data, loading, error } = useQuery(GET_EVENTS_QUERY);
     if (loading) return "Loading";
@@ -49,6 +47,10 @@ export default function Events({ isLoggedIn }) {
         displayedEvents = sortedEvents.filter(event => event.permission === 'public');
     } else {
         displayedEvents = sortedEvents;
+    }
+
+    if(filterEvent){ //add filter
+        displayedEvents = displayedEvents.filter(event => event.event_type===filterEvent);
     }
 
     const formatDate = (timestamp) => {
@@ -84,10 +86,6 @@ export default function Events({ isLoggedIn }) {
             <section className='App__section'>
                 <div className='App__section-top'>
                     <h2>Events</h2>
-                    <div className='App__section-filter'>
-                        <img src={filter} alt='filter icon'></img>
-                        <h5>FILTER</h5>
-                    </div>
                 </div>
                 <div className='App__section-bottom'>
                     {displayedEvents.map((e) => (
