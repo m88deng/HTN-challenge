@@ -14,7 +14,7 @@ export default function Login({ onLogin }) {
         if (email === 'mdeng@uwaterloo.ca' && password === 'htn2024') {
             onLogin(true);
             formRef.current.reset();
-            navigate("/logged");
+            navigate("/");
         } else {
             alert("failed login");
         }

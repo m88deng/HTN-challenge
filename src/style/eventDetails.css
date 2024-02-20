@@ -1,0 +1,22 @@
+.eventDetails {
+  min-height: 100vh;
+  background-image: url(../img/space-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.eventDetails__section {
+  padding: 50px 10%;
+}
+.eventDetails__section-top {
+  display: grid;
+  grid-template-columns: 2.3fr 1fr;
+  padding-top: 100px;
+  text-align: left;
+}
+
+
+

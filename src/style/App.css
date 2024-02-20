@@ -2,10 +2,17 @@
   background-image: url(../img/space-bg.png);
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
+  width: 100vw;
+  min-height: 100vh;
 }
 
 .App__header {
-  background: linear-gradient(rgba(14, 7, 7, 1) 0%, rgba(14, 7, 7, 1) 70%, rgba(14, 7, 7, 0) );
+  background: linear-gradient(
+    rgba(14, 7, 7, 1) 0%,
+    rgba(14, 7, 7, 1) 70%,
+    rgba(14, 7, 7, 0)
+  );
   position: absolute;
   top: 0;
   width: 100vw;
@@ -71,8 +78,13 @@
 }
 
 .App__section {
-  height: 100vh;
   padding: 150px 10%;
+  background: linear-gradient(
+    rgba(14, 7, 7, 0) 0%,
+    rgba(14, 7, 7, 0.6) 20%,
+    rgba(14, 7, 7, 0.4) 60%,
+    rgba(14, 7, 7, 0)
+  );
 }
 
 .App__section-top {
@@ -84,7 +96,6 @@
 
 .App__section-filter {
   text-align: left;
-  background-color: green;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -93,11 +104,31 @@
 }
 
 .App__section-filter img {
-  height: 18px;
+  height: 12px;
   width: auto;
   padding: 0 15px;
 }
 
-.App__section-middle {
-  background-color: blue;
+.App__section-bottom {
+  padding-bottom: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+.App__section-event {
+  color: var(--white);
+  text-align: left;
+  padding: 5px 0;
+}
+.App__section-event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+.App__section-event-name {
+  min-height: 50px;
+}
+.App__section-event-time {
+  padding-top: 10px;
+  padding-bottom: 2px;
 }

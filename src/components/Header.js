@@ -1,6 +1,6 @@
 import logo from './../img/logo.svg';
 import React from 'react';
-import ProfileIcon from './ProfileIcon';
+import ProfileIcon from './ProfileIcon.js';
 import { Link } from 'react-router-dom';
 import './../style/app.css';
 
