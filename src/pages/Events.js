@@ -2,9 +2,10 @@ import workshop from './../img/workshop.png';
 import activity from './../img/activity.png';
 import tech_talk from './../img/tech_talk.png';
 import { Link } from 'react-router-dom';
-import './../style/app.css';
+import './../style/App.css';
+import Filter from '../components/Filter.js';
 
-
+import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
 
 const GET_EVENTS_QUERY = gql`
@@ -16,18 +17,12 @@ const GET_EVENTS_QUERY = gql`
       permission
       start_time
       end_time
-    #   description
-    #   speakers {
-    #     name
-    #   }
-    #   public_url
-    #   private_url
-    #   related_events
     }
   }
-`
+`;
 
 export default function Events({ isLoggedIn, filterEvent }) {
+    const [shownEvents, setShownEvents] = useState([]);
 
     const { data, loading, error } = useQuery(GET_EVENTS_QUERY);
     if (loading) return "Loading";
@@ -41,6 +36,7 @@ export default function Events({ isLoggedIn, filterEvent }) {
         }
     });
 
+    // console.log(sortedEvents);
 
     let displayedEvents;
     if (!isLoggedIn) {
@@ -49,9 +45,24 @@ export default function Events({ isLoggedIn, filterEvent }) {
         displayedEvents = sortedEvents;
     }
 
-    if(filterEvent){ //add filter
-        displayedEvents = displayedEvents.filter(event => event.event_type===filterEvent);
-    }
+    const handleFilterChange = (selectedOptions) => {
+        let filteredEvents = displayedEvents; // Create a copy to avoid mutating the original array
+
+        if (selectedOptions) {
+            filteredEvents = filteredEvents.filter(event => {
+                // Check if the event's event_type matches any of the selected options
+                return Object.entries(selectedOptions).some(([option, isSelected]) => isSelected && event.event_type === option);
+            });
+        }
+
+        // Do something with the selected options
+        // console.log(filteredEvents);
+        if (filteredEvents && filteredEvents.length > 0) {
+            setShownEvents(filteredEvents); // Assuming shownEvents is a state variable
+        } else {
+            setShownEvents([]); // Reset shownEvents if no events are found
+        }
+    };
 
     const formatDate = (timestamp) => {
         const date = new Date(timestamp);
@@ -87,11 +98,12 @@ export default function Events({ isLoggedIn, filterEvent }) {
                 <div className='App__section-top'>
                     <h2>Events</h2>
                 </div>
+                <Filter onFilterChange={handleFilterChange} />
                 <div className='App__section-bottom'>
-                    {displayedEvents.map((e) => (
+                    {shownEvents.map((e) => (
                         <div key={e.id} className='App__section-event'>
                             <Link to={`/event${e.id}`}>
-                            <div>{formatImage(e.event_type)}</div>
+                                <div>{formatImage(e.event_type)}</div>
                             </Link>
                             <div className='App__section-event-time'>
                                 {formatDate(e.start_time)} &ensp;|&ensp; {formatTime(e.start_time)} - {formatTime(e.end_time)}

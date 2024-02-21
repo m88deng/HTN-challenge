@@ -31,23 +31,53 @@
   color: var(--white);
 }
 
+.Login__section-input-errormsg {
+  position: absolute;
+  font-family: Montserrat;
+  font-size: 14px;
+  color: #e5954a;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 50px;
+}
+
 .Login__section-submit {
   font-family: Montserrat;
   font-size: 20px;
   padding: 15px 0;
   width: 523px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  color: black;
   border-radius: 40px;
   border: none;
   margin-top: 60px;
   cursor: pointer;
 }
 
-.AccessDenied-message{
+.AccessDenied {
+  background-image: url(../img/space-error-bg.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.AccessDenied-message {
   text-align: center;
   font-family: Montserrat;
   font-size: 70px;
   font-weight: 600;
   color: var(--white);
-  padding: 200px 0px 50px;
+  padding: 0px 0px 40px;
+}
+
+.AccessDenied-Login {
+  margin-top: -50px;
 }

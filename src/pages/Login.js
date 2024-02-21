@@ -22,11 +22,11 @@ export default function Login({ onLogin }) {
     };
 
     const failedLoginMessage = (failedLogin) => {
-        if(failedLogin){
-            return <label>Invalid Email/Password</label>;
+        if (failedLogin) {
+            return <div className='Login__section-input-errormsg'>Invalid Email/Password</div>;
         }
         return null;
-    }    
+    }
 
     return (
         <div className='Login'>

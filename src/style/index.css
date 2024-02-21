@@ -1,6 +1,16 @@
 :root {
   --white: #ffffff;
-  --blue: #39A0DA;
+  --blue: #39a0da;
+
+  --xxxl: only screen and (min-width: 1920px);
+  --xxl: only screen and (min-width: 1400px) and (max-width: 1919px);
+  --xxl-1: only screen and (min-width: 1200px) and (max-width: 1600px);
+  --xl: only screen and (min-width: 1200px) and (max-width: 1399px);
+  --lg: only screen and (min-width: 992px) and (max-width: 1199px);
+  --md: only screen and (min-width: 768px) and (max-width: 991px);
+  --sm: only screen and (max-width: 767px);
+  --xs: only screen and (max-width: 575px);
+  --xxs: (max-width: 375px);
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");

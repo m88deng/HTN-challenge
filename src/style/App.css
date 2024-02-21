@@ -19,7 +19,7 @@
   height: 70px;
   padding-top: 15px;
   display: grid;
-  grid-template-columns: 1.5fr 4fr 0.8fr;
+  grid-template-columns: 2fr 2fr;
   align-items: center;
   font-size: 20px;
   color: var(--white);
@@ -100,17 +100,69 @@
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  margin-top: -20px;
+  margin-top: 10px;
 }
 
-.App__section-filter-visibility{
-  display: none;
+#filter-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30px;
+  gap: 10px;
 }
 
+.App__section-filter-option {
+  display: grid;
+  grid-template-columns: 1fr 0.4fr;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 30px;
+}
+
+#activity {
+  display: block;
+  opacity: 1;
+  cursor: pointer;
+}
+
+#workshop {
+  display: block;
+  opacity: 1;
+  cursor: pointer;
+}
+
+#tech_talk {
+  display: block;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.unselected {
+  opacity: 0.4  !important;
+}
+
+.App__section-filter-option-left {
+  padding-left: 15px;
+}
+
+.App__section-filter-option-right {
+  text-align: right;
+}
 .App__section-filter img {
   height: 12px;
   width: auto;
   padding: 0 15px;
+}
+
+.App__section-filter-option {
+  border-radius: 30px;
+  background-color: #eeeeeedd;
+  color: black;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .App__section-bottom {

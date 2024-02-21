@@ -3,18 +3,15 @@ import activity from './../img/activity_big.png';
 import tech_talk from './../img/tech_talk_big.png';
 import './../style/eventDetails.css';
 
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
-import { useQuery, gql } from '@apollo/client';
-import { useApolloClient } from '@apollo/client';
+import { Link, useNavigate } from 'react-router-dom';
 
 function EventDetails({ eventId, isLoggedIn }) {
-    const client = useApolloClient();
-    const [eventData, setEventData] = useState(null);
+    const [eventData, setEventData] = useState([]);
     const [relatedEventData, setRelatedEventData] = useState([]);
-    const [relatedEventIds, setRelatedEventIds] = useState(null);
+    const [relatedEventIds, setRelatedEventIds] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const url = `https://api.hackthenorth.com/v3/events/${eventId}`;
@@ -37,23 +34,19 @@ function EventDetails({ eventId, isLoggedIn }) {
         const fetchNames = async () => {
             if (relatedEventIds) {
                 const promises = relatedEventIds.map(async (eventId) => {
-                    console.log(eventId);
                     const { data } = await await axios.get(`https://api.hackthenorth.com/v3/events/${eventId}`);
-                    console.log(data);
                     return data;
                 });
-
                 const names = await Promise.all(promises);
                 setRelatedEventData(names);
-                console.log(relatedEventData);
             }
         };
 
         fetchNames();
     }, [relatedEventIds]);
 
-    if(eventData){
-        if(permission === 'private' && !isLoggedIn){
+    if (eventData) {
+        if (eventData.permission === 'private' && !isLoggedIn) {
             navigate("/access-denied");
         }
     }
@@ -85,16 +78,22 @@ function EventDetails({ eventId, isLoggedIn }) {
     };
 
     const formatURL = (generalURL) => {
-        if (generalURL) {
-            return <h5>Public: {generalURL}</h5>
+        if (generalURL && generalURL.length > 0) {
+            return <Link to={generalURL}><p className='underline'>{generalURL}</p></Link>;
         }
         return null;
     };
     const formatPrivateURL = (permission, privateURL) => {
         if (permission === 'private') {
-            return <p>{privateURL}</p>
+            return <Link to={privateURL}><p className='underline'>{privateURL}</p></Link>;
         }
         return null;
+    };
+
+    const formatSpakers = (speakers) => {
+        if (speakers && speakers.length > 0) {
+            return <h5>  Speakers: {eventData.speakers.map(speaker => speaker.name).join(', ')}</h5>;
+        }
     };
 
     return (
@@ -106,24 +105,29 @@ function EventDetails({ eventId, isLoggedIn }) {
                             <div>{formatImage(eventData.event_type)}</div>
                         </div>
                         <div className='eventDetails__section-time'>
-                            <h2 className='eventDetails__section-time-day'>{formatDate(eventData.start_time)}</h2>
-                            <h3 className='eventDetails__section-time-hour'>{formatTime(eventData.start_time)} - {formatTime(eventData.end_time)}</h3>
-                            <h5>{formatURL(eventData.general_url)}</h5>
+                            <div>
+                                <h2 className='eventDetails__section-time-day'>{formatDate(eventData.start_time)}</h2>
+                                <h3 className='eventDetails__section-time-hour'>{formatTime(eventData.start_time)} - {formatTime(eventData.end_time)}</h3>
+                            </div>
+                            <div>
+                                <p className='eventDetails__section-permission'>{eventData.permission} Event <br /></p>
+                                <div className='eventDetails__section-publicURL'>{formatURL(eventData.public_url)}</div>
+                            </div>
                         </div>
                     </div>
                     <div className='eventDetails__section-middle'>
                         <div>
-                            <p>{formatPrivateURL(eventData.permission, eventData.private_url)}</p>
+                            <div>{formatPrivateURL(eventData.permission, eventData.private_url)}</div>
                             <h2>{eventData.name}</h2>
                             <p>{eventData.description}</p>
-                            <h5>  Speakers: {eventData.speakers.map(speaker => speaker.name).join(', ')}</h5>
+                            <div>{formatSpakers(eventData.speakers)}</div>
                         </div>
-                        <div className='eventDetails__section-event-related'>
+                        <div className='eventDetails__section-event-related pl-20'>
                             <div className='eventDetails__section-event-related-title'>Related Events</div>
                             {relatedEventData.map((relatedEvent) => (
                                 <Link to={`/event${relatedEvent.id}`}>
                                     <div key={relatedEvent.id}>
-                                        <li className='eventDetails__section-event-related-link'>{relatedEvent.name}</li>
+                                        <div className='eventDetails__section-event-related-link underline'>{relatedEvent.name}</div>
                                     </div>
                                 </Link>
                             ))}
@@ -134,7 +138,6 @@ function EventDetails({ eventId, isLoggedIn }) {
                 <p>Loading...</p>
             )}
         </div>
-
     );
 };
 
