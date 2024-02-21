@@ -22,7 +22,7 @@ export default function Filter({ onFilterChange }) {
     useEffect(() => {
         // Call the onFilterChange callback with the selectedOptions
         onFilterChange(selectedOptions);
-    }, [selectedOptions]);
+    }, [selectedOptions, onFilterChange]);
 
     return (
         <div className='App__section-filter'>
@@ -32,22 +32,22 @@ export default function Filter({ onFilterChange }) {
                 <div id="workshop" onClick={() => handleSelected('workshop')} className={selectedOptions['workshop'] ? '' : 'unselected'}>
                     <div className='App__section-filter-option'>
                         <div className='App__section-filter-option-left'>Workshop</div>
-                        <img src={close} className='App__section-filter-option-right' />
+                        <img src={close} className='App__section-filter-option-right' alt='close icon' />
                     </div>
                 </div>
                 <div id="activity" onClick={() => handleSelected('activity')} className={selectedOptions['activity'] ? '' : 'unselected'}>
                     <div className='App__section-filter-option'>
                         <div className='App__section-filter-option-left'>Activity</div>
-                        <img src={close} className='App__section-filter-option-right' />
+                        <img src={close} className='App__section-filter-option-right' alt='close icon' />
                     </div>
                 </div>
                 <div id="tech_talk" onClick={() => handleSelected('tech_talk')} className={selectedOptions['tech_talk'] ? '' : 'unselected'}>
                     <div className='App__section-filter-option'>
                         <div className='App__section-filter-option-left'>Tech Talk</div>
-                        <img src={close} className='App__section-filter-option-right' />
+                        <img src={close} className='App__section-filter-option-right' alt='close icon' />
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
