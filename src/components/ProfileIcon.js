@@ -17,7 +17,7 @@ export default function ProfileIcon({ isLoggedIn, onLogout }) {
     } else {
         return (
             <Link to='/login'>
-                <div className='App__header-link' style={{ height: "30px" }}>LOGIN</div>
+                <div className='App__header-link'>LOGIN</div>
             </Link>
         );
     }

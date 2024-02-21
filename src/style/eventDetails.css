@@ -9,10 +9,6 @@ p {
   text-decoration-skip-ink: auto;
 }
 
-.pl-20 {
-  padding-left: 20px;
-}
-
 .eventDetails {
   min-height: 100vh;
   background-image: url(../img/space-bg.png);
@@ -25,6 +21,13 @@ p {
 
 .eventDetails__section {
   padding: 50px 10%;
+  background: linear-gradient(
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.3) 75%,
+    rgba(0, 0, 0, 0.1) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 .eventDetails__section-top {
   display: grid;
@@ -33,11 +36,15 @@ p {
   text-align: left;
 }
 
+.eventDetails__section-name {
+  padding-top: 3%;
+}
+
 .eventDetails__section-time {
   display: grid;
-  grid-template-rows: 2fr 0.5fr;
+  grid-template-rows: 2fr 4fr;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 30px;
 }
 
 .eventDetails__section-time-day {
@@ -60,13 +67,8 @@ p {
   margin: 0;
 }
 
-.eventDetails__section-middle {
-  display: grid;
-  grid-template-columns: 2.3fr 1fr;
-}
-
 .eventDetails__section-event-related {
-  padding-top: 40px;
+  margin-top: -30px;
 }
 .eventDetails__section-event-related-title {
   font-size: 24px;
@@ -84,4 +86,58 @@ p {
 
 .underline:hover {
   color: #bebebe;
+}
+
+@media only screen and (max-width: 497px) {
+  .eventDetails__section-top {
+    grid-template-columns: 1fr;
+    padding-top: 45px;
+  }
+  .eventDetails__section-time {
+    padding: 0;
+    display: block;
+    padding-left: 0;
+    
+  }
+  .eventDetails__section-time-part {
+    padding-right: 0;
+  }
+  .eventDetails__section-event-related {
+    margin-top: 50px;
+  }
+  .underline {
+    font-size: 12px;
+  }
+  h2 {
+    font-size: 38px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 498px) and (max-width: 830px) {
+  .eventDetails__section-top {
+    grid-template-columns: 1fr;
+  }
+  .eventDetails__section-time {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .eventDetails__section-time-part {
+    padding-right: 20px;
+  }
+  .eventDetails__section-event-related {
+    margin: 0;
+  }
+  .underline {
+    font-size: 12px;
+  }
+  h2 {
+    font-size: 38px;
+  }
+  h3 {
+    font-size: 16px;
+  }
 }

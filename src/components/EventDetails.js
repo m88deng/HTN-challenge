@@ -103,34 +103,30 @@ function EventDetails({ eventId, isLoggedIn }) {
                     <div className='eventDetails__section-top'>
                         <div>
                             <div>{formatImage(eventData.event_type)}</div>
+                            <div className='eventDetails__section-name'>
+                                <div>{formatPrivateURL(eventData.permission, eventData.private_url)}</div>
+                                <h2>{eventData.name}</h2>
+                                <p>{eventData.description}</p>
+                                <div>{formatSpakers(eventData.speakers)}</div>
+                            </div>
                         </div>
                         <div className='eventDetails__section-time'>
-                            <div>
+                            <div className='eventDetails__section-time-part'>
                                 <h2 className='eventDetails__section-time-day'>{formatDate(eventData.start_time)}</h2>
                                 <h3 className='eventDetails__section-time-hour'>{formatTime(eventData.start_time)} - {formatTime(eventData.end_time)}</h3>
-                            </div>
-                            <div>
                                 <p className='eventDetails__section-permission'>{eventData.permission} Event <br /></p>
                                 <div className='eventDetails__section-publicURL'>{formatURL(eventData.public_url)}</div>
                             </div>
-                        </div>
-                    </div>
-                    <div className='eventDetails__section-middle'>
-                        <div>
-                            <div>{formatPrivateURL(eventData.permission, eventData.private_url)}</div>
-                            <h2>{eventData.name}</h2>
-                            <p>{eventData.description}</p>
-                            <div>{formatSpakers(eventData.speakers)}</div>
-                        </div>
-                        <div className='eventDetails__section-event-related pl-20'>
-                            <div className='eventDetails__section-event-related-title'>Related Events</div>
-                            {relatedEventData.map((relatedEvent) => (
-                                <Link to={`/event${relatedEvent.id}`}>
-                                    <div key={relatedEvent.id}>
-                                        <div className='eventDetails__section-event-related-link underline'>{relatedEvent.name}</div>
-                                    </div>
-                                </Link>
-                            ))}
+                            <div className='eventDetails__section-event-related'>
+                                <div className='eventDetails__section-event-related-title'>Related Events</div>
+                                {relatedEventData.map((relatedEvent) => (
+                                    <Link to={`/event${relatedEvent.id}`}>
+                                        <div key={relatedEvent.id}>
+                                            <div className='eventDetails__section-event-related-link underline'>{relatedEvent.name}</div>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>

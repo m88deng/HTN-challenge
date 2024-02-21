@@ -35,7 +35,7 @@ export default function Login({ onLogin }) {
                 <form ref={formRef}>
                     <div><input className="Login__section-input" type="text" value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} /></div>
                     <div><input className="Login__section-input" type="password" value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} /></div>
-                    <div>{failedLoginMessage(failedLogin)}</div>
+                    {failedLoginMessage(failedLogin)}
                     <div><button className="Login__section-submit" type="submit" onClick={handleLogin}>LOGIN</button></div>
                 </form>
             </section>

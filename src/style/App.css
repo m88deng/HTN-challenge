@@ -52,6 +52,7 @@
 .App__header-link {
   color: var(--white);
   font-size: 20px;
+  height: 30px;
   padding-right: 40px;
   text-align: right;
   /* background-color: greenyellow; */
@@ -140,7 +141,7 @@
 }
 
 .unselected {
-  opacity: 0.4  !important;
+  opacity: 0.4 !important;
 }
 
 .App__section-filter-option-left {
@@ -187,4 +188,49 @@
 .App__section-event-time {
   padding-top: 10px;
   padding-bottom: 2px;
+}
+
+@media only screen and (max-width: 667px) {
+  .App__header-logo {
+    height: 17px;
+    padding-left: 15px;
+  }
+  .App__header-link {
+    font-size: 16px;
+    padding-right: 23px;
+  }
+  .App__section-bottom {
+    grid-template-columns: 1fr;
+  }
+  .App__section-filter {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 25px 0px;
+  }
+  #filter-options {
+    flex-direction: column;
+  }
+
+  .App__section-filter-option-left {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (min-width: 668px) and (max-width: 756px) {
+  .App__section-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 757px) and (max-width: 989px) {
+  .App__header-logo {
+    height: 18px;
+  }
+  .App__header-link {
+    font-size: 18px;
+  }
+  .App__section-bottom {
+    grid-template-columns: 1fr 1fr;
+  }
 }
