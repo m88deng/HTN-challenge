@@ -11,7 +11,8 @@ p {
 
 .eventDetails {
   min-height: 100vh;
-  background-image: url(../img/space-bg.png);
+  background-color: #0e0e0e;
+  /* background-image: url(../img/space-bg.png); */
   background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -97,7 +98,6 @@ p {
     padding: 0;
     display: block;
     padding-left: 0;
-    
   }
   .eventDetails__section-time-part {
     padding-right: 0;
